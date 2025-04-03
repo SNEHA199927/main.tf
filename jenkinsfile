@@ -1,20 +1,20 @@
 pipeline {
     agent any 
     stages {
+        stage('main.tf') { 
+            steps {
+                main.tf
+                
+            }
+        }
         stage('terraform init') { 
             steps {
-                sh 'terraform init'
-                
+            sh 'terraform init'
             }
         }
         stage('terraform plan') { 
             steps {
-            sh 'terraform plan'
-            }
-        }
-        stage('terraform apply') { 
-            steps {
-                sh 'terraform apply'
+                sh 'terraform plan'
             }
         }
     }
