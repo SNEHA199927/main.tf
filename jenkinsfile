@@ -1,13 +1,6 @@
 pipeline {
     agent any
     
-    stages {
-        stage ("checkout from GIT") {
-            steps {
-              
-              git branch: 'main', credentialsId: 'PUT YOUR CREDENTIALID', url: 'Your Github Repo' 
-            } 
-        }
         stage('Install Terraform') {
             steps {
                 script {
