@@ -11,3 +11,8 @@ terraform {
 provider "aws" {
   region = "us-east-1"  
 }
+
+
+resource "aws_iam_user" "terraform" {
+  name = "terraform_user"
+}
