@@ -1,10 +1,12 @@
 pipeline {
     agent any
-
+            environment {
+AWS _CREDENTIALS = credentials('30586e3b-bcc6-40fc-aa73-e7388a2c193e')
+            }
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', credentialsId: 'ae8c2227-3d01-446c-b3b4-a00fc07ea10e', url: 'https://github.com/SNEHA199927/terraform-and-jenkins-propject.git'
+               checkout scm
             }
         }
         stage('Terraform init') {
