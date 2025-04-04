@@ -13,15 +13,13 @@ pipeline {
         }
         stage('Terraform Init') {
             steps {
-               
-                    sh 'terraform init'
-                
+                bat 'terraform init'
             }
         }
         stage('Terraform Apply') {
             steps {
                 withAWS(credentials: '30586e3b-bcc6-40fc-aa73-e7388a2c193e', region: 'us-east-1') {
-                    sh 'terraform apply -auto-approve'
+                    bat 'terraform apply -auto-approve'
                 }
             }
         }
