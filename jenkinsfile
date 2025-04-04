@@ -13,9 +13,9 @@ pipeline {
         }
         stage('Terraform Init') {
             steps {
-                withAWS(credentials: '30586e3b-bcc6-40fc-aa73-e7388a2c193e', region: 'us-east-1') {
+               
                     sh 'terraform init'
-                }
+                
             }
         }
         stage('Terraform Apply') {
