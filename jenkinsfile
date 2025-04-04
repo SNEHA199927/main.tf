@@ -1,24 +1,29 @@
 pipeline {
     agent any
-            environment {
-AWS _CREDENTIALS = credentials('30586e3b-bcc6-40fc-aa73-e7388a2c193e')
-            }
+
+    environment {
+        AWS_CREDENTIALS = credentials('30586e3b-bcc6-40fc-aa73-e7388a2c193e')
+    }
+
     stages {
         stage('Checkout') {
             steps {
-               checkout scm
+                checkout scm
             }
         }
-        stage('Terraform init') {
+        stage('Terraform Init') {
             steps {
-                sh 'terraform init'
+                withAWS(credentials: '30586e3b-bcc6-40fc-aa73-e7388a2c193e', region: 'us-east-1') {
+                    sh 'terraform init'
+                }
             }
         }
-        stage('Terraform apply') {
+        stage('Terraform Apply') {
             steps {
-                sh 'terraform apply --auto-approve'
+                withAWS(credentials: '30586e3b-bcc6-40fc-aa73-e7388a2c193e', region: 'us-east-1') {
+                    sh 'terraform apply -auto-approve'
+                }
             }
         }
-        
     }
 }
